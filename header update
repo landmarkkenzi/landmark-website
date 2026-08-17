@@ -1,0 +1,1521 @@
+HEADER NAV
+
+{%  style %}
+
+.header-wrapper {
+  position: relative !important;
+  z-index: 999999 !important;
+}
+
+.site-header {
+  position: relative !important;
+  z-index: 1000000 !important;
+}
+
+.site-header .page-width {
+  position: relative !important;
+  z-index: 1000001 !important;
+}
+
+.custom-header-layout {
+  position: relative !important;
+  z-index: 1000002 !important;
+}
+
+.custom-header-navigation {
+  position: relative !important;
+  z-index: 1000003 !important;
+}
+
+.custom-header-navigation .site-nav {
+  position: relative !important;
+  z-index: 1000004 !important;
+}
+
+@media screen and (max-width: 749px) {
+
+  .custom-header-navigation .site-nav__details[open] > .site-nav__dropdown,
+  .custom-header-navigation .site-nav__details[open] > .megamenu {
+
+    position: absolute !important;
+
+    top: calc(100% + 8px) !important;
+
+    /*
+      Keep the dropdown inside the screen.
+      It is still positioned relative to the header.
+    */
+    left: max(16px, min(0px, calc(100vw - 316px))) !important;
+
+    width: min(300px, calc(100vw - 32px)) !important;
+    max-width: calc(100vw - 32px) !important;
+
+    max-height: calc(100vh - 150px) !important;
+
+    margin: 0 !important;
+    padding: 12px !important;
+
+    box-sizing: border-box !important;
+
+    background: #fff !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    -webkit-overflow-scrolling: touch;
+
+    z-index: 2147483647 !important;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
+
+    
+    
+    .custom-header-navigation .megamenu__promo {
+  display: none !important;
+}
+  }
+
+}
+{% endstyle %}
+
+
+
+
+{%- liquid
+  unless limit
+    assign limit = main_menu.links.size
+  endunless
+
+  unless offset
+    assign offset = 0
+  endunless
+-%}
+
+<ul class="site-nav site-navigation">
+
+  {%- for link in main_menu.links limit: limit offset: offset -%}
+
+    {%- liquid
+      assign has_dropdown = false
+      assign is_megamenu = false
+
+      if link.links != blank
+        assign has_dropdown = true
+      endif
+
+      if has_dropdown
+        for block in section.blocks
+          if link.title == block.settings.menu_item
+            assign is_megamenu = true
+
+            assign promo_image_1 = block.settings.promo_image_1
+            assign promo_heading_1 = block.settings.promo_heading_1
+            assign promo_text_1 = block.settings.promo_text_1
+            assign promo_url_1 = block.settings.promo_url_1
+
+            assign promo_image_2 = block.settings.promo_image_2
+            assign promo_heading_2 = block.settings.promo_heading_2
+            assign promo_text_2 = block.settings.promo_text_2
+            assign promo_url_2 = block.settings.promo_url_2
+
+            break
+          endif
+        endfor
+      endif
+    -%}
+
+    <li
+      class="
+        site-nav__item
+        site-nav__expanded-item
+        {% if has_dropdown %}site-nav--has-dropdown{% endif %}
+        {% if is_megamenu %}site-nav--is-megamenu{% endif %}
+        {% unless template == 'index' %}
+          {% if link.active %}site-nav--active{% endif %}
+        {% endunless %}
+      "
+    >
+
+      {% if has_dropdown %}
+
+        <details
+          id="site-nav-item--{{ forloop.index }}"
+          class="site-nav__details"
+        >
+
+          <summary
+            class="site-nav__link site-nav__link--underline site-nav__link--has-dropdown"
+            aria-controls="site-nav-item--{{ forloop.index }}"
+          >
+            {{ link.title }}
+
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              role="presentation"
+              class="icon icon--wide icon-chevron-down"
+              viewBox="0 0 28 16"
+            >
+              <path
+                d="m1.57 1.59 12.76 12.77L27.1 1.59"
+                stroke-width="2"
+                stroke="#000"
+                fill="none"
+              />
+            </svg>
+          </summary>
+
+
+          {%- if is_megamenu -%}
+
+            {%- assign columns = 1 -%}
+
+            <div class="site-nav__dropdown megamenu text-left">
+
+              <div class="page-width">
+
+                <div class="megamenu__wrapper">
+
+                  <div class="megamenu__cols">
+
+                    <div class="megamenu__col appear-animation appear-delay-1">
+
+                      {%- for childlink in link.links -%}
+
+                        {%- liquid
+                          assign create_new_column = false
+
+                          if childlink.levels > 0 and forloop.index != 1
+                            assign create_new_column = true
+                          endif
+
+                          if childlink.levels == 0 and previous_column_type == 'full'
+                            assign create_new_column = true
+                          endif
+                        -%}
+
+                        {%- if create_new_column -%}
+
+                          {%- assign columns = columns | plus: 1 -%}
+
+                          </div>
+
+                          <div class="megamenu__col appear-animation appear-delay-{{ forloop.index }}">
+
+                        {%- endif -%}
+
+
+                        <div class="megamenu__col-title">
+
+                          <a
+                            href="{{ childlink.url }}"
+                            class="site-nav__dropdown-link site-nav__dropdown-link--top-level site-nav__dropdown-link--mega"
+                          >
+                            <span class="megamenu__link-label">
+                              {{ childlink.title }}
+                            </span>
+                          </a>
+
+                        </div>
+
+
+                        {%- liquid
+                          if childlink.levels > 0
+                            assign previous_column_type = 'full'
+                          else
+                            assign previous_column_type = 'single'
+                          endif
+                        -%}
+
+
+                        {%- for grandchildlink in childlink.links -%}
+
+                          <a
+                            href="{{ grandchildlink.url }}"
+                            class="site-nav__dropdown-link"
+                          >
+                            {{ grandchildlink.title }}
+                          </a>
+
+                        {%- endfor -%}
+
+                      {%- endfor -%}
+
+                    </div>
+
+                  </div>
+
+
+                  {%- if promo_image_1 -%}
+
+                    {%- assign columns = columns | plus: 1 -%}
+
+                    <div class="megamenu__promo appear-animation appear-delay-{{ columns }}">
+
+                      {%- if promo_url_1 -%}
+                        <a href="{{ promo_url_1 }}" class="megamenu__promo-link">
+                      {%- endif -%}
+
+                        <div style="margin: 0 auto; max-width: {{ promo_image_1.width }}px">
+
+                          <div
+                            class="image-wrap aos-animate megamenu__promo-image"
+                            style="height: 0; padding-bottom: {{ 100 | divided_by: promo_image_1.aspect_ratio }}%;"
+                          >
+
+                            {%- render 'image-element',
+                              img: promo_image_1,
+                              widths: '540, 750, 900',
+                              sizeVariable: '250px'
+                            -%}
+
+                          </div>
+
+                        </div>
+
+                        {%- if promo_heading_1 -%}
+                          <div>
+                            <strong>{{ promo_heading_1 }}</strong>
+                          </div>
+                        {%- endif -%}
+
+                        {%- if promo_text_1 -%}
+                          <div>{{ promo_text_1 }}</div>
+                        {%- endif -%}
+
+                      {%- if promo_url_1 -%}
+                        </a>
+                      {%- endif -%}
+
+                    </div>
+
+                  {%- endif -%}
+
+
+                  {%- if promo_image_2 -%}
+
+                    {%- assign columns = columns | plus: 1 -%}
+
+                    <div class="megamenu__promo appear-animation appear-delay-{{ columns }}">
+
+                      {%- if promo_url_2 -%}
+                        <a href="{{ promo_url_2 }}" class="megamenu__promo-link">
+                      {%- endif -%}
+
+                        <div style="margin: 0 auto; max-width: {{ promo_image_2.width }}px">
+
+                          <div
+                            class="image-wrap aos-animate megamenu__promo-image"
+                            style="height: 0; padding-bottom: {{ 100 | divided_by: promo_image_2.aspect_ratio }}%;"
+                          >
+
+                            {%- render 'image-element',
+                              img: promo_image_2,
+                              widths: '540, 750, 900',
+                              sizeVariable: '250px'
+                            -%}
+
+                          </div>
+
+                        </div>
+
+                        {%- if promo_heading_2 -%}
+                          <div>
+                            <strong>{{ promo_heading_2 }}</strong>
+                          </div>
+                        {%- endif -%}
+
+                        {%- if promo_text_2 -%}
+                          <div>{{ promo_text_2 }}</div>
+                        {%- endif -%}
+
+                      {%- if promo_url_2 -%}
+                        </a>
+                      {%- endif -%}
+
+                    </div>
+
+                  {%- endif -%}
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+          {%- else -%}
+
+            <ul class="site-nav__dropdown text-left">
+
+              {%- for childlink in link.links -%}
+
+                {%- liquid
+                  assign has_sub_dropdown = false
+
+                  if childlink.links != blank
+                    assign has_sub_dropdown = true
+                  endif
+                -%}
+
+
+                <li
+                  class="
+                    {% if childlink.active %}site-nav--active{% endif %}
+                    {% if has_sub_dropdown %}site-nav__deep-dropdown-trigger{% endif %}
+                  "
+                >
+
+                  {% if has_sub_dropdown %}
+
+                    <details class="site-nav__details">
+
+                      <summary
+                        class="
+                          site-nav__dropdown-link
+                          site-nav__dropdown-link--second-level
+                          site-nav__dropdown-link--has-children
+                        "
+                      >
+
+                        {{ childlink.title | escape }}
+
+                        <svg
+                          aria-hidden="true"
+                          focusable="false"
+                          role="presentation"
+                          class="icon icon--wide icon-chevron-down"
+                          viewBox="0 0 28 16"
+                        >
+                          <path
+                            d="m1.57 1.59 12.76 12.77L27.1 1.59"
+                            stroke-width="2"
+                            stroke="#000"
+                            fill="none"
+                          />
+                        </svg>
+
+                      </summary>
+
+
+                      <ul class="site-nav__deep-dropdown">
+
+                        {%- for grandchildlink in childlink.links -%}
+
+                          <li>
+
+                            <a
+                              href="{{ grandchildlink.url }}"
+                              class="site-nav__dropdown-link"
+                            >
+                              {{ grandchildlink.title | escape }}
+                            </a>
+
+                          </li>
+
+                        {%- endfor -%}
+
+                      </ul>
+
+                    </details>
+
+                  {% else %}
+
+                    <a
+                      href="{{ childlink.url }}"
+                      class="site-nav__dropdown-link site-nav__dropdown-link--second-level"
+                    >
+                      {{ childlink.title | escape }}
+                    </a>
+
+                  {% endif %}
+
+                </li>
+
+              {%- endfor -%}
+
+            </ul>
+
+          {%- endif -%}
+
+        </details>
+
+
+      {% else %}
+
+        <a
+          href="{{ link.url }}"
+          class="site-nav__link"
+        >
+          {{ link.title }}
+        </a>
+
+      {% endif %}
+
+    </li>
+
+  {%- endfor -%}
+
+</ul>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  const mobileBreakpoint = 749;
+
+  document
+    .querySelectorAll('.custom-header-navigation .site-nav__details')
+    .forEach(function (details) {
+
+      details.addEventListener('mouseenter', function () {
+
+        if (window.innerWidth > mobileBreakpoint) {
+          details.open = true;
+        }
+
+      });
+
+      details.addEventListener('mouseleave', function () {
+
+        if (window.innerWidth > mobileBreakpoint) {
+          details.open = false;
+        }
+
+      });
+
+    });
+
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+HEADER.LIQUID
+
+{%- liquid
+  assign main_menu = linklists[section.settings.main_menu_link_list]
+
+  
+  assign sticky_header = false
+  assign overlay_header = false
+
+  if section.settings.header_sticky
+    assign sticky_header = true
+  endif
+
+  assign template_name = template | replace: '.', ' ' | truncatewords: 2, '' | handle
+
+  if template_name == 'index' and section.settings.sticky_index
+    assign overlay_header = true
+  endif
+
+  if template_name contains 'collection' and collection.image and section.settings.sticky_collection
+    assign overlay_header = true
+  endif
+-%}
+
+{%- style -%}
+
+.header-wrapper {
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+.site-header {
+  position: relative !important;
+  z-index: 10000 !important;
+}
+/* ================================
+   HEADER
+================================ */
+
+.site-header {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.site-header .page-width {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+/* ================================
+   25 / 50 / 25 GRID
+================================ */
+
+.custom-header-layout {
+  display: grid !important;
+  grid-template-columns: 25% 50% 25%;
+  align-items: center !important;
+  width: 100%;
+  height: 65px !important;
+  min-height: 65px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ================================
+   LOGO
+================================ */
+
+.custom-header-logo {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  width: 100%;
+  height: 65px;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.custom-header-logo-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 100%;
+  height: 65px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.custom-header-logo-image {
+  display: block !important;
+
+  width: auto !important;
+  max-width: 120px !important;
+  max-height: 45px !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+/* ================================
+   NAVIGATION
+================================ */
+
+.custom-header-navigation {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 100%;
+  height: 65px;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  text-align: center;
+}
+
+.custom-header-navigation .site-nav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+
+  margin: 0 auto !important;
+  padding: 0 !important;
+
+  gap: 10px;
+}
+
+.custom-header-navigation .site-nav__link {
+  display: flex !important;
+  align-items: center !important;
+
+  margin: 0 !important;
+
+  padding: 5px 10px !important;
+
+  font-size: 15px;
+}
+
+/* ================================
+   SEARCH
+================================ */
+
+.custom-header-search {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100%;
+  height: 65px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.custom-header-search-form {
+  display: flex !important;
+  align-items: center !important;
+
+  width: 100% !important;
+  max-width: none !important;
+  height: 36px;
+
+  margin: 0 !important;
+  padding: 0 10px 0 14px !important;
+
+  border: 1px solid #383938 !important;
+  border-radius: 999px !important;
+
+  background: transparent !important;
+  box-sizing: border-box;
+}
+
+.custom-header-search-form input {
+  flex: 1 !important;
+  width: auto !important;
+  min-width: 0 !important;
+
+  margin: 0 !important;
+  padding: 0 4px !important;
+
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+
+  background: transparent !important;
+
+  font-size: 14px;
+  color: #383938 !important;
+}
+
+.custom-header-search-form input::placeholder {
+  color: #383938 !important;
+  opacity: 1;
+}
+
+.custom-header-search-form button {
+  flex: 0 0 auto !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 24px;
+  height: 24px;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  background: transparent !important;
+
+  color: #383938 !important;
+  cursor: pointer;
+}
+
+.custom-header-search-form svg {
+  width: 16px !important;
+  height: 16px !important;
+
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8;
+}
+
+/* Prevent Motion's separate search overlay */
+
+.site-header__search-container {
+  display: none !important;
+}
+/* ================================
+   REMOVE ORIGINAL THEME ICONS
+================================ */
+
+.header-item--icons {
+  display: none !important;
+}
+
+
+/* Prevent Motion from rendering another navigation/logo layout */
+
+.header-item--left.header-item--navigation {
+  display: none !important;
+}
+
+.site-header > .page-width > .text-center {
+  display: none !important;
+}
+
+
+
+/* ================================
+   MOBILE
+================================ */
+
+
+
+
+
+
+
+
+  /* =================================
+     MOBILE HEADER
+  ================================= */
+
+  html,
+  body {
+    overflow-x: hidden !important;
+  }
+
+  .site-header,
+  .site-header .page-width,
+  .custom-header-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .site-header .page-width {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+
+  /* =================================
+     MOBILE LAYOUT
+
+     ROW 1:
+     LOGO | SEARCH
+
+     ROW 2:
+     NAVIGATION
+  ================================= */
+
+  .custom-header-layout {
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(70px, {{ section.settings.mobile_logo_width }}px)
+      minmax(0, 1fr);
+
+    grid-template-areas:
+      "logo search"
+      "nav nav";
+
+    column-gap: 12px;
+    row-gap: 8px;
+
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 10px 0 !important;
+  }
+
+
+  /* =================================
+     LOGO
+  ================================= */
+
+  .custom-header-logo {
+    grid-area: logo;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .custom-header-logo-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .custom-header-logo-image {
+  display: block !important;
+
+  width: auto !important;
+  max-width: {{ section.settings.mobile_logo_width }}px !important;
+  height: auto !important;
+  max-height: 45px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+}
+  /* =================================
+     SEARCH
+  ================================= */
+
+  .custom-header-search {
+    grid-area: search;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: stretch !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .custom-header-search-form {
+    display: flex !important;
+    align-items: center !important;
+
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: 36px;
+
+    margin: 0 !important;
+    padding: 0 10px 0 14px !important;
+
+    box-sizing: border-box;
+
+    border: 1px solid #383938 !important;
+    border-radius: 999px !important;
+
+    background: transparent !important;
+  }
+
+  .custom-header-search-form input {
+    flex: 1 1 auto !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 4px !important;
+
+    border: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    background: transparent !important;
+
+    font-size: 14px;
+    color: #383938 !important;
+  }
+
+  .custom-header-search-form button {
+    flex: 0 0 24px !important;
+
+    width: 24px !important;
+    height: 24px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+/* =================================
+   MOBILE NAVIGATION
+================================= */
+
+.custom-header-navigation {
+  grid-area: nav;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  position: relative !important;
+  z-index: 100000 !important;
+
+  overflow: visible !important;
+}
+
+.custom-header-navigation .site-nav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  width: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  gap: 5px;
+
+  white-space: nowrap;
+
+  overflow: visible !important;
+
+  position: relative !important;
+  z-index: 100001 !important;
+}
+
+.custom-header-navigation .site-nav__item {
+  flex: 0 0 auto !important;
+
+  position: relative !important;
+}
+
+.custom-header-navigation .site-nav__link {
+  display: flex !important;
+  align-items: center !important;
+
+  margin: 0 !important;
+  padding: 6px 10px !important;
+
+  white-space: nowrap;
+
+  font-size: 12px;
+}
+
+/* ================================
+   MOBILE DROPDOWNS
+================================ */
+
+.custom-header-navigation .site-nav__details {
+  position: relative !important;
+}
+
+.custom-header-navigation .site-nav__details[open] > .site-nav__dropdown {
+  display: block !important;
+
+  position: absolute !important;
+
+  top: 100% !important;
+  left: 0 !important;
+
+  width: 220px !important;
+  max-width: 80vw !important;
+
+  margin: 0 !important;
+  padding: 15px !important;
+
+  background: #fff !important;
+
+  z-index: 999999 !important;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+}
+
+.custom-header-navigation .site-nav__dropdown-link {
+  display: block !important;
+
+  padding: 8px 5px !important;
+
+  white-space: normal !important;
+}
+
+/* ================================
+   MOBILE MEGA MENU
+================================ */
+
+.custom-header-navigation .site-nav__details[open] > .megamenu {
+  display: block !important;
+
+  position: absolute !important;
+
+  top: 100% !important;
+  left: 0 !important;
+
+  width: 90vw !important;
+  max-width: 500px !important;
+
+  background: #fff !important;
+
+  z-index: 999999 !important;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+}
+
+.custom-header-navigation .megamenu__wrapper {
+  display: block !important;
+}
+
+.custom-header-navigation .megamenu__cols {
+  display: block !important;
+}
+
+.custom-header-navigation .megamenu__col {
+  width: 100% !important;
+}
+
+.custom-header-navigation .megamenu__promo {
+  display: none !important;
+}
+  .custom-header-navigation .site-nav__link {
+    display: flex !important;
+    align-items: center !important;
+
+    margin: 0 !important;
+    padding: 6px 10px !important;
+
+    white-space: nowrap;
+
+    font-size: 12px;
+  }
+  
+  /* =================================
+   KEEP MOBILE NAV DROPDOWN ABOVE CONTENT
+================================= */
+
+.header-wrapper,
+.site-header,
+.custom-header-navigation,
+.custom-header-navigation .site-nav,
+.custom-header-navigation .site-nav__item,
+.custom-header-navigation .site-nav__details {
+  position: relative !important;
+}
+
+.header-wrapper {
+  z-index: 99999 !important;
+}
+
+.site-header {
+  z-index: 100000 !important;
+}
+
+.custom-header-navigation {
+  z-index: 100001 !important;
+}
+
+.custom-header-navigation .site-nav__details[open] > .site-nav__dropdown,
+.custom-header-navigation .site-nav__details[open] > .megamenu {
+  position: absolute !important;
+  z-index: 999999 !important;
+}
+
+
+  /* =================================
+     REMOVE ORIGINAL MOBILE THEME ITEMS
+  ================================= */
+
+  .header-item--icons,
+  .site-header__search-container {
+    display: none !important;
+  }
+
+}
+
+{%- endstyle -%}
+
+
+<div
+  data-section-id="{{ section.id }}"
+  data-section-type="header"
+>
+
+  <div
+    id="HeaderWrapper"
+    class="header-wrapper{% if overlay_header %} header-wrapper--overlay is-light{% endif %}"
+  >
+
+    <header
+      id="SiteHeader"
+      class="site-header{% if settings.type_navigation_style %} site-header--heading-style{% endif %}"
+      data-sticky="{{ sticky_header }}"
+      data-overlay="{{ overlay_header }}"
+    >
+
+      <div class="page-width">
+
+        <div class="custom-header-layout">
+
+          <!-- LOGO: 25% -->
+
+          <div class="custom-header-logo">
+
+  <a href="{{ routes.root_url }}" class="custom-header-logo-link">
+
+    {% if section.settings.logo != blank %}
+
+      <img
+        src="{{ section.settings.logo | image_url: width: 300 }}"
+        alt="{{ shop.name | escape }}"
+        class="custom-header-logo-image"
+        width="{{ section.settings.logo.width }}"
+        height="{{ section.settings.logo.height }}"
+      >
+
+    {% else %}
+
+      <span class="custom-header-logo-text">
+        {{ shop.name }}
+      </span>
+
+    {% endif %}
+
+  </a>
+
+</div>
+
+
+          <!-- NAVIGATION: 50% -->
+
+          <div
+            class="custom-header-navigation"
+            role="navigation"
+            aria-label="Primary"
+          >
+
+            {%- render 'header-desktop-nav',
+              section: section,
+              main_menu: main_menu,
+              hover_menu: section.settings.hover_menu
+            -%}
+
+          </div>
+
+
+          <!-- SEARCH: 25% -->
+
+          <div class="custom-header-search">
+
+            <form
+              action="{{ routes.search_url }}"
+              method="get"
+              role="search"
+              class="custom-header-search-form"
+            >
+
+              <input
+                type="search"
+                name="q"
+                value="{{ search.terms | escape }}"
+                placeholder="Search"
+                aria-label="Search"
+              >
+
+              <button
+                type="submit"
+                aria-label="Search"
+              >
+
+                <svg
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <circle cx="9" cy="9" r="7"/>
+                  <path d="M14 14l4 4"/>
+                </svg>
+
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+  </div>
+
+</div>
+
+
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header_logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sections.header.settings.logo.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo-inverted",
+      "label": "t:sections.header.settings.logo-inverted.label",
+      "info": "t:sections.header.settings.logo-inverted.info"
+    },
+    {
+      "type": "range",
+      "id": "desktop_logo_width",
+      "label": "t:sections.header.settings.desktop_logo_width.label",
+      "default": 200,
+      "min": 100,
+      "max": 400,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_width",
+      "label": "t:sections.header.settings.mobile_logo_width.label",
+      "default": 120,
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "info": "t:sections.header.settings.mobile_logo_width.info"
+    },
+    {
+      "type": "link_list",
+      "id": "main_menu_link_list",
+      "label": "t:sections.header.settings.main_menu_link_list.label",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "hover_menu",
+      "label": "t:sections.header.settings.hover_menu.label",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "main_menu_alignment",
+      "label": "t:sections.header.settings.main_menu_alignment.label",
+      "default": "left-center",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.header.settings.main_menu_alignment.options.left.label"
+        },
+        {
+          "value": "left-center",
+          "label": "t:sections.header.settings.main_menu_alignment.options.left-center.label"
+        },
+        {
+          "value": "left-drawer",
+          "label": "t:sections.header.settings.main_menu_alignment.options.left-drawer.label"
+        },
+        {
+          "value": "center-left",
+          "label": "t:sections.header.settings.main_menu_alignment.options.center-left.label"
+        },
+        {
+          "value": "center-split",
+          "label": "t:sections.header.settings.main_menu_alignment.options.center-split.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.header.settings.main_menu_alignment.options.center.label"
+        },
+        {
+          "value": "center-drawer",
+          "label": "t:sections.header.settings.main_menu_alignment.options.center-drawer.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "header_sticky",
+      "label": "t:sections.header.settings.header_sticky.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_index",
+      "label": "t:sections.header.settings.sticky_index.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_collection",
+      "label": "t:sections.header.settings.sticky_collection.label",
+      "info": "t:sections.header.settings.sticky_collection.info",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "megamenu",
+      "name": "t:sections.header.blocks.mega_menu.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "t:sections.header.blocks.mega_menu.settings.menu_item.label",
+          "info": "t:sections.header.blocks.mega_menu.settings.menu_item.info"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.header.blocks.mega_menu.settings.header_promotion_1"
+        },
+        {
+          "type": "image_picker",
+          "id": "promo_image_1",
+          "label": "t:sections.header.blocks.mega_menu.settings.promo_image_1.label"
+        },
+        {
+          "type": "text",
+          "id": "promo_heading_1",
+          "label": "t:sections.header.blocks.mega_menu.settings.promo_heading_1.label"
+        },
+        {
+          "type": "text",
+          "id": "promo_text_1",
+          "label": "t:sections.header.blocks.mega_menu.settings.promo_text_1.label"
+        },
+        {
+          "type": "url",
+          "id": "promo_url_1",
+          "label": "t:sections.header.blocks.mega_menu.settings.promo_url_1.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.header.blocks.mega_menu.settings.header_promotion_2"
+        },
+        {
+          "type": "image_picker",
+          "id": "promo_image_2",
+          "label": "t:sections.header.blocks.mega_menu.settings.promo_image_2.label"
+        },
+        {
+          "type": "text",
+          "id": "promo_heading_2",
+          "label": "t:sections.header.blocks.mega_menu.settings.promo_heading_2.label"
+        },
+        {
+          "type": "text",
+          "id": "promo_text_2",
+          "label": "t:sections.header.blocks.mega_menu.settings.promo_text_2.label"
+        },
+        {
+          "type": "url",
+          "id": "promo_url_2",
+          "label": "t:sections.header.blocks.mega_menu.settings.promo_url_2.label"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "settings": {}
+  }
+}
+{% endschema %}
