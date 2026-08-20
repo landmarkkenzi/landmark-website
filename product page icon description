@@ -1,0 +1,40 @@
+{% style %}
+  .link-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  .link-row img {
+    flex-shrink: 0;
+  }
+  .link-row a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+{% endstyle %}
+
+<div>
+ <div class="link-row">
+  <img src="https://cdn.shopify.com/s/files/1/1529/3721/files/Landmark_Icons-05_23573267-6f64-41e8-a8b3-ca16e483121d.png?v=1786630556" alt="Free Returns over $65" width="34" height="32"
+  <p> Free and Easy 45-Day Returns </p>
+  </div>
+
+  <div>
+ <div class="link-row">
+  <img src="https://cdn.shopify.com/s/files/1/1529/3721/files/Landmark_Icons-06_74c8f046-06ed-442f-9172-697dafab1d9a.png?v=1786630491" alt="Free Returns over $65" width="34" height="32"
+  <p> Free Shipping over $65 </p>
+  </div>
+
+  <div>
+ <div class="link-row">
+  <img src="https://cdn.shopify.com/s/files/1/1529/3721/files/Landmark_Icons-04_ece119af-499b-4ba7-82df-95ae6a9cc15b.png?v=1786630491" alt="Every Product Gives Back" width="34" height="32"
+  <p> Every Product Gives Back </p>
+  </div>
+  
+</div>
+
