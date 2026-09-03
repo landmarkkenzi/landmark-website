@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wholesale Login</title>
+<style>
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 80px 40px;
+    background: #ffffff;
+
+  }
+
+  .columns {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+  }
+
+  .col {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 360px;
+    text-align: center;
+  }
+
+  .icon {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .icon svg {
+    height: 60px;
+    width: auto;
+  }
+
+  .icon.serif-f {
+
+    color: #3a4440;
+    height: auto;
+  }
+
+  h2 {
+
+    color: #4a4a3d;
+    margin: 0 0 16px 0;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #4a4a4a;
+    margin: 0 0 28px 0;
+    font-weight: 300;
+  }
+
+  .btn {
+    display: inline-block;
+    background: #b98459;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 16px 34px;
+    letter-spacing: 0.2px;
+    transition: background 0.2s ease;
+  }
+
+  .btn:hover {
+    background: #a5714a;
+  }
+
+  @media (max-width: 900px) {
+    .columns { gap: 24px; }
+    body { padding: 40px 16px; }
+    h2 { font-size: 20px; }
+    p { font-size: 14px; }
+    .btn { padding: 12px 20px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="columns">
+
+  <!-- Envoy B2B Login -->
+  <div class="col">
+    <div class="icon">
+  <img src="https://cdn.shopify.com/s/files/1/0620/4145/6797/files/Landmark_Icons-09.png?v=1788445032" alt="" style="height:60px; width:auto;">
+</div>
+    <h2>Envoy B2B Login</h2>
+    <p>Current Envoy members can order wholesale through Envoy B2B.</p>
+    <a href="#" class="btn">Login</a>
+  </div>
+
+  <!-- New to Landmark -->
+  <div class="col">
+   <div class="col">
+    <div class="icon">
+  <img src="https://cdn.shopify.com/s/files/1/0620/4145/6797/files/Landmark_Icons-11.png?v=1788445032" alt="" style="height:60px; width:auto;">
+</div>
+    <h2>New to Landmark?</h2>
+    <p>Amazing! Welcome to the crew. We can't wait to get to know you. Please fill out this form for us, and we'll be in touch soon</p>
+    <a href="#" class="btn">Create an Account</a>
+  </div>
+
+  <!-- Faire Direct -->
+  <div class="col">
+    <div class="icon">
+  <img src="https://cdn.shopify.com/s/files/1/0620/4145/6797/files/Landmark_Icons-10.png?v=1788445032" alt="" style="height:60px; width:auto;">
+</div>
+    <h2>Faire Direct</h2>
+    <p>Familiar with Faire? Find Landmark through your existing account.</p>
+    <a href="#" class="btn">Shop Faire</a>
+  </div>
+
+</div>
+
+</body>
+</html>
