@@ -82,6 +82,7 @@
 }
 
 
+```css
 /* =========================================
    MARKER POSITIONS
    ========================================= */
@@ -89,178 +90,180 @@
 
 /* Yosemite National Park */
 .nps-marker-1 {
-  left: 4%;
+  left: 7%;
   top: 40%;
 }
 
 /* Joshua Tree National Park */
 .nps-marker-2 {
-  left: 15%;
+  left: 18%;
   top: 56%;
 }
 
 /* Saguaro National Park */
 .nps-marker-3 {
-  left: 22%;
+  left: 25%;
   top: 59%;
 }
 
 /* Rocky Mountain National Park */
 .nps-marker-4 {
-  left: 28%;
+  left: 31%;
   top: 36%;
 }
 
 /* Bryce Canyon National Park */
 .nps-marker-5 {
-  left: 17%;
+  left: 20%;
   top: 42%;
 }
 
 /* Great Smoky Mountains National Park */
 .nps-marker-7 {
-  left: 66%;
+  left: 69%;
   top: 50%;
 }
 
 /* Everglades National Park */
 .nps-marker-8 {
-  left: 78%;
+  left: 81%;
   top: 72%;
 }
 
 /* Denali National Park */
 .nps-marker-9 {
-  left: 18%;
+  left: 21%;
   top: 76%;
 }
 
 /* Haleakala National Park */
 .nps-marker-10 {
-  left: 48%;
+  left: 51%;
   top: 93%;
 }
 
 
 /* Isle Royale */
 .nps-marker-12 {
-  left: 62%;
+  left: 65%;
   top: 15%;
 }
 
 /* Crater Lake */
 .nps-marker-13 {
-  left: 6%;
+  left: 9%;
   top: 22%;
 }
 
 /* Canyonlands */
 .nps-marker-14 {
-  left: 23%;
+  left: 26%;
   top: 43%;
 }
 
 /* Glacier */
 .nps-marker-15 {
-  left: 26%;
+  left: 29%;
   top: 12%;
 }
 
 /* Rainier */
 .nps-marker-16 {
-  left: 8%;
+  left: 11%;
   top: 12%;
 }
 
 /* Yellowstone */
 .nps-marker-17 {
-  left: 25%;
+  left: 28%;
   top: 20%;
 }
 
 /* Mammoth Cave */
 .nps-marker-18 {
-  left: 62%;
+  left: 65%;
   top: 46%;
 }
 
 /* Kings Canyon */
 .nps-marker-19 {
-  left: 11%;
+  left: 14%;
   top: 42%;
 }
 
 /* Capitol Reef */
 .nps-marker-20 {
-  left: 20%;
+  left: 23%;
   top: 40%;
 }
 
 /* Acadia */
 .nps-marker-21 {
-  left: 88%;
+  left: 91%;
   top: 9%;
 }
 
 /* Petrified Forest */
 .nps-marker-22 {
-  left: 21%;
+  left: 24%;
   top: 52%;
 }
 
 /* Anchorage */
 .nps-marker-23 {
-  left: 18%;
+  left: 21%;
   top: 84%;
 }
 
 /* Pinnacles */
 .nps-marker-24 {
-  left: 5%;
+  left: 8%;
   top: 45%;
 }
 
 /* Wind Cave */
 .nps-marker-25 {
-  left: 33%;
+  left: 36%;
   top: 25%;
 }
 
 /* New River Gorge */
 .nps-marker-26 {
-  left: 71%;
+  left: 74%;
   top: 42%;
 }
 
 /* Mesa Verde */
 .nps-marker-27 {
-  left: 24%;
+  left: 27%;
   top: 48%;
 }
 
 /* Lassen Volcanic */
 .nps-marker-28 {
-  left: 6%;
+  left: 9%;
   top: 27%;
 }
 
 /* Black Canyon */
 .nps-marker-29 {
-  left: 26%;
+  left: 29%;
   top: 40%;
 }
 
 /* Cuyahoga */
 .nps-marker-31 {
-  left: 69%;
+  left: 72%;
   top: 29%;
 }
 
 /* Big Bend */
 .nps-marker-32 {
-  left: 33%;
+  left: 36%;
   top: 67%;
 }
+
+
 
 /* =========================================
    MODAL
