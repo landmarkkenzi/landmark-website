@@ -456,7 +456,7 @@
 
   <div class="nps-map-wrapper">
 
-    <img class="nps-map-image" src="https://cdn.shopify.com/s/files/1/1529/3721/files/Map_Marks.svg?v=1787665575" alt="Our National Parks">
+    <img class="nps-map-image" src="https://cdn.shopify.com/s/files/1/1529/3721/files/Map_Marks_45bdc171-57fd-40bb-8a48-e6c0c203a947.svg?v=1788893663" alt="Find Your Park">
 
     <!-- MARKERS -->
     <button type="button" class="nps-map-marker nps-marker-1" data-name="Yosemite National Park"></button>
