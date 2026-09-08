@@ -82,7 +82,6 @@
 }
 
 
-```css
 /* =========================================
    MARKER POSITIONS
    ========================================= */
@@ -90,179 +89,178 @@
 
 /* Yosemite National Park */
 .nps-marker-1 {
-  left: 7%;
+  left: 9%;
   top: 40%;
 }
 
 /* Joshua Tree National Park */
 .nps-marker-2 {
-  left: 18%;
+  left: 20%;
   top: 56%;
 }
 
 /* Saguaro National Park */
 .nps-marker-3 {
-  left: 25%;
+  left: 27%;
   top: 59%;
 }
 
 /* Rocky Mountain National Park */
 .nps-marker-4 {
-  left: 31%;
+  left: 33%;
   top: 36%;
 }
 
 /* Bryce Canyon National Park */
 .nps-marker-5 {
-  left: 20%;
+  left: 22%;
   top: 42%;
 }
 
 /* Great Smoky Mountains National Park */
 .nps-marker-7 {
-  left: 69%;
+  left: 71%;
   top: 50%;
 }
 
 /* Everglades National Park */
 .nps-marker-8 {
-  left: 81%;
+  left: 83%;
   top: 72%;
 }
 
 /* Denali National Park */
 .nps-marker-9 {
-  left: 21%;
+  left: 23%;
   top: 76%;
 }
 
 /* Haleakala National Park */
 .nps-marker-10 {
-  left: 51%;
+  left: 53%;
   top: 93%;
 }
 
 
 /* Isle Royale */
 .nps-marker-12 {
-  left: 65%;
+  left: 67%;
   top: 15%;
 }
 
 /* Crater Lake */
 .nps-marker-13 {
-  left: 9%;
+  left: 11%;
   top: 22%;
 }
 
 /* Canyonlands */
 .nps-marker-14 {
-  left: 26%;
+  left: 28%;
   top: 43%;
 }
 
 /* Glacier */
 .nps-marker-15 {
-  left: 29%;
+  left: 31%;
   top: 12%;
 }
 
 /* Rainier */
 .nps-marker-16 {
-  left: 11%;
+  left: 13%;
   top: 12%;
 }
 
 /* Yellowstone */
 .nps-marker-17 {
-  left: 28%;
+  left: 30%;
   top: 20%;
 }
 
 /* Mammoth Cave */
 .nps-marker-18 {
-  left: 65%;
+  left: 67%;
   top: 46%;
 }
 
 /* Kings Canyon */
 .nps-marker-19 {
-  left: 14%;
+  left: 16%;
   top: 42%;
 }
 
 /* Capitol Reef */
 .nps-marker-20 {
-  left: 23%;
+  left: 25%;
   top: 40%;
 }
 
 /* Acadia */
 .nps-marker-21 {
-  left: 91%;
+  left: 93%;
   top: 9%;
 }
 
 /* Petrified Forest */
 .nps-marker-22 {
-  left: 24%;
+  left: 26%;
   top: 52%;
 }
 
 /* Anchorage */
 .nps-marker-23 {
-  left: 21%;
+  left: 23%;
   top: 84%;
 }
 
 /* Pinnacles */
 .nps-marker-24 {
-  left: 8%;
+  left: 10%;
   top: 45%;
 }
 
 /* Wind Cave */
 .nps-marker-25 {
-  left: 36%;
+  left: 38%;
   top: 25%;
 }
 
 /* New River Gorge */
 .nps-marker-26 {
-  left: 74%;
+  left: 76%;
   top: 42%;
 }
 
 /* Mesa Verde */
 .nps-marker-27 {
-  left: 27%;
+  left: 29%;
   top: 48%;
 }
 
 /* Lassen Volcanic */
 .nps-marker-28 {
-  left: 9%;
+  left: 11%;
   top: 27%;
 }
 
 /* Black Canyon */
 .nps-marker-29 {
-  left: 29%;
+  left: 31%;
   top: 40%;
 }
 
 /* Cuyahoga */
 .nps-marker-31 {
-  left: 72%;
+  left: 74%;
   top: 29%;
 }
 
 /* Big Bend */
 .nps-marker-32 {
-  left: 36%;
+  left: 38%;
   top: 67%;
 }
-
 
 
 /* =========================================
@@ -480,45 +478,45 @@
 
     <button type="button" class="nps-map-marker nps-marker-10" data-name="Haleakala National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-12" data-name="Isle Royale"></button>
+    <button type="button" class="nps-map-marker nps-marker-12" data-name="Isle Royale National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-13" data-name="Crater Lake"></button>
+    <button type="button" class="nps-map-marker nps-marker-13" data-name="Crater Lake National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-14" data-name="Canyonlands"></button>
+    <button type="button" class="nps-map-marker nps-marker-14" data-name="Canyonlands National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-15" data-name="Glacier"></button>
+    <button type="button" class="nps-map-marker nps-marker-15" data-name="Glacier National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-16" data-name="Rainier"></button>
+    <button type="button" class="nps-map-marker nps-marker-16" data-name="Rainier National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-17" data-name="Yellowstone"></button>
+    <button type="button" class="nps-map-marker nps-marker-17" data-name="Yellowstone National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-18" data-name="Mammoth Cave"></button>
+    <button type="button" class="nps-map-marker nps-marker-18" data-name="Mammoth Cave National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-19" data-name="Kings Canyon"></button>
+    <button type="button" class="nps-map-marker nps-marker-19" data-name="Kings Canyon National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-20" data-name="Capitol Reef"></button>
+    <button type="button" class="nps-map-marker nps-marker-20" data-name="Capitol Reef National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-21" data-name="Acadia"></button>
+    <button type="button" class="nps-map-marker nps-marker-21" data-name="Acadia National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-22" data-name="Petrified Forest"></button>
+    <button type="button" class="nps-map-marker nps-marker-22" data-name="Petrified Forest National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-23" data-name="Anchorage"></button>
+    <button type="button" class="nps-map-marker nps-marker-23" data-name="Anchorage National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-24" data-name="Pinnacles"></button>
+    <button type="button" class="nps-map-marker nps-marker-24" data-name="Pinnacles National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-25" data-name="Wind Cave"></button>
+    <button type="button" class="nps-map-marker nps-marker-25" data-name="Wind Cave National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-26" data-name="New River Gorge"></button>
+    <button type="button" class="nps-map-marker nps-marker-26" data-name="New River Gorge National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-27" data-name="Mesa Verde"></button>
+    <button type="button" class="nps-map-marker nps-marker-27" data-name="Mesa Verde National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-28" data-name="Lassen Volcanic"></button>
+    <button type="button" class="nps-map-marker nps-marker-28" data-name="Lassen Volcanic National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-29" data-name="Black Canyon"></button>
+    <button type="button" class="nps-map-marker nps-marker-29" data-name="Black Canyon National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-31" data-name="Cuyahoga"></button>
+    <button type="button" class="nps-map-marker nps-marker-31" data-name="Cuyahoga National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-32" data-name="Big Bend"></button>
+    <button type="button" class="nps-map-marker nps-marker-32" data-name="Big Bend National Park"></button>
 
   </div>
 
