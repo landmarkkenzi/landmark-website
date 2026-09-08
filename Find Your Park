@@ -292,36 +292,76 @@
 
 .nps-modal-content {
   position: relative;
-  width: min(760px, 100%);
+  width: min(1100px, 100%);
   max-height: calc(100vh - 60px);
-  overflow: hidden;
+  overflow-y: auto;
   box-sizing: border-box;
-}
-
-
-/* Photo */
-
-.nps-modal-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: calc(100vh - 130px);
-  object-fit: contain;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 40px 32px 32px;
 }
 
 
 /* Park name */
-/*
+
 .nps-modal-title {
-  margin: 0;
-  padding: 18px 24px 22px;
+  margin: 0 0 24px;
+  padding: 0;
   color: #383838;
   font-family: inherit;
   font-size: 24px;
   font-weight: 600;
   line-height: 1.2;
   text-align: center;
-} */
+}
+
+
+/* =========================================
+   SHOPPABLE PRODUCT GRID
+   ========================================= */
+
+.nps-shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.nps-shop-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nps-shop-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background: #f4f4f4;
+}
+
+.nps-shop-card__title {
+  font-size: 14px;
+  margin: 0 0 4px;
+}
+
+.nps-shop-card__price {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+.nps-shop-empty {
+  text-align: center;
+  color: #777;
+  padding: 40px 0;
+  margin: 0;
+}
+
 
 /* =========================================
    CLOSE BUTTON
@@ -346,6 +386,7 @@
   z-index: 20;
   appearance: none;
   -webkit-appearance: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 .nps-modal-close:hover {
@@ -380,17 +421,18 @@
     width: 100%;
     max-width: 100%;
     max-height: calc(100vh - 30px);
+    padding: 32px 18px 24px;
   }
 
-  .nps-modal-image {
-    max-height: calc(100vh - 100px);
-  }
-
-/*
   .nps-modal-title {
-    padding: 14px 18px 18px;
     font-size: 20px;
-  } */
+    margin-bottom: 18px;
+  }
+
+  .nps-shop-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 
   .nps-modal-close {
     top: 8px;
@@ -417,66 +459,63 @@
     <img class="nps-map-image" src="https://cdn.shopify.com/s/files/1/1529/3721/files/Map_Marks.svg?v=1787665575" alt="Our National Parks">
 
     <!-- MARKERS -->
-    <button type="button" class="nps-map-marker nps-marker-1" data-name="Yosemite National Park" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Yosemite.png?v=1787603427"></button>
+    <button type="button" class="nps-map-marker nps-marker-1" data-name="Yosemite National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-2" data-name="Joshua Tree National Park" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Joshua_Tree.png?v=1787603400"></button>
+    <button type="button" class="nps-map-marker nps-marker-2" data-name="Joshua Tree National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-3" data-name="Saguaro National Park" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Saguaro.png?v=1787603409"></button>
+    <button type="button" class="nps-map-marker nps-marker-3" data-name="Saguaro National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-4" data-name="Rocky Mountain National Park" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Rocky.png?v=1787603432"></button>
+    <button type="button" class="nps-map-marker nps-marker-4" data-name="Rocky Mountain National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-5" data-name="Bryce Canyon National Park" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Bryce_Canyon.png?v=1787603301"></button>
+    <button type="button" class="nps-map-marker nps-marker-5" data-name="Bryce Canyon National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-7" data-name="Great Smoky Mountains National Park" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map-08.png?v=1787145714"></button>
+    <button type="button" class="nps-map-marker nps-marker-7" data-name="Great Smoky Mountains National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-8" data-name="Everglades National Park" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Everglades.png?v=1787603424"></button>
+    <button type="button" class="nps-map-marker nps-marker-8" data-name="Everglades National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-9" data-name="Denali National Park" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Denali.png?v=1787603385"></button>
-   
-    <button type="button" class="nps-map-marker nps-marker-10" data-name="Haleakala National Park" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Haleakala.png?v=1787603377"></button>
+    <button type="button" class="nps-map-marker nps-marker-9" data-name="Denali National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-12" data-name="Isle Royale" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Isle_Royale.png?v=1787603421"></button>
-  
-    <button type="button" class="nps-map-marker nps-marker-13" data-name="Crater Lake" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Crater_Lake.png?v=1787603419"></button>
+    <button type="button" class="nps-map-marker nps-marker-10" data-name="Haleakala National Park"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-14" data-name="Canyonlands" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Canyonlands.png?v=1787603415"></button>
+    <button type="button" class="nps-map-marker nps-marker-12" data-name="Isle Royale"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-15" data-name="Glacier" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Glacier.png?v=1787603414"></button>
+    <button type="button" class="nps-map-marker nps-marker-13" data-name="Crater Lake"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-16" data-name="Rainier" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Rainier.png?v=1787603411"></button>
+    <button type="button" class="nps-map-marker nps-marker-14" data-name="Canyonlands"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-17" data-name="Yellowstone" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Yellowstone.png?v=1787603405"></button>
+    <button type="button" class="nps-map-marker nps-marker-15" data-name="Glacier"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-18" data-name="Mammoth Cave" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Mammoth_Cave.png?v=1787603403"></button>
+    <button type="button" class="nps-map-marker nps-marker-16" data-name="Rainier"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-19" data-name="Kings Canyon" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Kings_Canyon.png?v=1787603397"></button>
+    <button type="button" class="nps-map-marker nps-marker-17" data-name="Yellowstone"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-20" data-name="Capitol Reef" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Capitol_Reef.png?v=1787603394"></button>
+    <button type="button" class="nps-map-marker nps-marker-18" data-name="Mammoth Cave"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-21" data-name="Acadia" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Acadia.png?v=1787603390"></button>
+    <button type="button" class="nps-map-marker nps-marker-19" data-name="Kings Canyon"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-22" data-name="Petrified Forest" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Petrified.png?v=1787603378"></button>
+    <button type="button" class="nps-map-marker nps-marker-20" data-name="Capitol Reef"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-23" data-name="Anchorage" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Anchorage.png?v=1787603365"></button>
+    <button type="button" class="nps-map-marker nps-marker-21" data-name="Acadia"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-24" data-name="Pinnacles" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Pinnacles.png?v=1787603360"></button>
+    <button type="button" class="nps-map-marker nps-marker-22" data-name="Petrified Forest"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-25" data-name="Wind Cave" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Wind_Cave.png?v=1787603355"></button>
+    <button type="button" class="nps-map-marker nps-marker-23" data-name="Anchorage"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-26" data-name="New River Gorge" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_New_River_Gorge.png?v=1787603349"></button>
+    <button type="button" class="nps-map-marker nps-marker-24" data-name="Pinnacles"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-27" data-name="Mesa Verde" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Mesa_Verde.png?v=1787603342"></button>
+    <button type="button" class="nps-map-marker nps-marker-25" data-name="Wind Cave"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-28" data-name="Lassen Volcanic" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Lassen.png?v=1787603334"></button>
+    <button type="button" class="nps-map-marker nps-marker-26" data-name="New River Gorge"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-29" data-name="Black Canyon" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Black_Canyon.png?v=1787603327"></button>
+    <button type="button" class="nps-map-marker nps-marker-27" data-name="Mesa Verde"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-31" data-name="Cuyahoga" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Cuyahoga.png?v=1787603309"></button>
+    <button type="button" class="nps-map-marker nps-marker-28" data-name="Lassen Volcanic"></button>
 
-    <button type="button" class="nps-map-marker nps-marker-32" data-name="Big Bend" data-image="https://cdn.shopify.com/s/files/1/1529/3721/files/NPS_Summer_Closing_Blog_Map_Big_Bend.png?v=1787603289"></button>
+    <button type="button" class="nps-map-marker nps-marker-29" data-name="Black Canyon"></button>
 
+    <button type="button" class="nps-map-marker nps-marker-31" data-name="Cuyahoga"></button>
 
-
+    <button type="button" class="nps-map-marker nps-marker-32" data-name="Big Bend"></button>
 
   </div>
 
@@ -484,20 +523,22 @@
 
 
 <!-- =========================================
-     POPUP MODAL
+     POPUP MODAL (now shows shoppable products)
      ========================================= -->
 
 <div class="nps-modal" id="nps-modal" role="dialog" aria-modal="true" aria-hidden="true">
 
   <div class="nps-modal-content">
 
-    <button type="button" class="nps-modal-close" id="nps-modal-close" aria-label="Close photo">
+    <button type="button" class="nps-modal-close" id="nps-modal-close" aria-label="Close">
       ×
     </button>
 
-    <img class="nps-modal-image" id="nps-modal-image" src="" alt="">
-
     <h2 class="nps-modal-title" id="nps-modal-title"></h2>
+
+    <div class="nps-shop-grid" id="nps-shop-grid"></div>
+
+    <p class="nps-shop-empty" id="nps-shop-empty" hidden>No products found for this park yet.</p>
 
   </div>
 
@@ -511,14 +552,96 @@
 <script>
 (function() {
 
-  const markers = document.querySelectorAll('.nps-map-marker');
   const modal = document.getElementById('nps-modal');
-  const modalImage = document.getElementById('nps-modal-image');
   const modalTitle = document.getElementById('nps-modal-title');
   const modalClose = document.getElementById('nps-modal-close');
+  const shopGrid = document.getElementById('nps-shop-grid');
+  const shopEmpty = document.getElementById('nps-shop-empty');
 
-  if (!modal || !modalImage || !modalTitle || !modalClose) {
+  if (!modal || !modalTitle || !modalClose || !shopGrid || !shopEmpty) {
     return;
+  }
+
+  /* =========================================
+     PRODUCT HANDLES PER PARK
+     Fill in the handles for each park below.
+     A handle is the part of the URL after
+     /products/  e.g. /products/trail-mug
+     ========================================= */
+
+  const PARK_PRODUCTS = {
+    'Yosemite National Park': [],
+    'Joshua Tree National Park': [],
+    'Saguaro National Park': [],
+    'Rocky Mountain National Park': [],
+    'Bryce Canyon National Park': [],
+    'Great Smoky Mountains National Park': [],
+    'Everglades National Park': [],
+    'Denali National Park': [],
+    'Haleakala National Park': [],
+    'Isle Royale': [],
+    'Crater Lake': [],
+    'Canyonlands': [],
+    'Glacier': [],
+    'Rainier': [],
+    'Yellowstone': [],
+    'Mammoth Cave': [],
+    'Kings Canyon': [],
+    'Capitol Reef': [],
+    'Acadia': [],
+    'Petrified Forest': [],
+    'Anchorage': [],
+    'Pinnacles': [],
+    'Wind Cave': [],
+    'New River Gorge': [],
+    'Mesa Verde': [],
+    'Lassen Volcanic': [],
+    'Black Canyon': [],
+    'Cuyahoga': [],
+    'Big Bend': [ 'big-bend-national-park-poster' ]
+  };
+
+  const productCache = {};
+
+  function formatMoney(cents) {
+    // Adjust if your store's currency/locale isn't USD
+    return '$' + (cents / 100).toFixed(2);
+  }
+
+  function fetchProduct(handle) {
+    if (productCache[handle]) {
+      return Promise.resolve(productCache[handle]);
+    }
+    return fetch('/products/' + handle + '.js')
+      .then(function(res) {
+        if (!res.ok) throw new Error('Not found: ' + handle);
+        return res.json();
+      })
+      .then(function(data) {
+        productCache[handle] = data;
+        return data;
+      })
+      .catch(function(err) {
+        console.warn('Could not load product', handle, err);
+        return null;
+      });
+  }
+
+  function buildCard(product) {
+    const variant = product.variants && product.variants[0];
+    const price = variant ? formatMoney(variant.price) : '';
+    const image = product.featured_image || (product.images && product.images[0]) || '';
+
+    const a = document.createElement('a');
+    a.className = 'nps-shop-card';
+    a.href = '/products/' + product.handle;
+
+    a.innerHTML =
+      (image ? '<img src="' + image + '" alt="' + product.title + '" loading="lazy">' : '') +
+      '<p class="nps-shop-card__title">' + product.title + '</p>' +
+      '<p class="nps-shop-card__price">' + price + '</p>';
+
+    return a;
   }
 
 
@@ -526,22 +649,36 @@
      OPEN MODAL
      ========================================= */
 
-  markers.forEach(function(marker) {
+  document.addEventListener('click', function(event) {
 
-    marker.addEventListener('click', function() {
+    const marker = event.target.closest('.nps-map-marker');
+    if (!marker) return;
 
-      const image = marker.getAttribute('data-image');
-      const name = marker.getAttribute('data-name');
+    const name = marker.getAttribute('data-name');
+    const handles = PARK_PRODUCTS[name] || [];
 
-      modalImage.src = image;
-      modalImage.alt = name;
-      modalTitle.textContent = name;
+    modalTitle.textContent = name;
+    shopGrid.innerHTML = '';
+    shopEmpty.hidden = true;
 
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
 
-      document.body.style.overflow = 'hidden';
+    if (!handles.length) {
+      shopEmpty.hidden = false;
+      return;
+    }
 
+    Promise.all(handles.map(fetchProduct)).then(function(products) {
+      const found = products.filter(Boolean);
+      if (!found.length) {
+        shopEmpty.hidden = false;
+        return;
+      }
+      found.forEach(function(product) {
+        shopGrid.appendChild(buildCard(product));
+      });
     });
 
   });
@@ -556,9 +693,9 @@
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
 
-    modalImage.src = '';
-    modalImage.alt = '';
     modalTitle.textContent = '';
+    shopGrid.innerHTML = '';
+    shopEmpty.hidden = true;
 
     document.body.style.overflow = '';
 
@@ -569,7 +706,7 @@
 
 
   /* =========================================
-     CLOSE WHEN CLICKING OUTSIDE PHOTO
+     CLOSE WHEN CLICKING OUTSIDE CONTENT
      ========================================= */
 
   modal.addEventListener('click', function(event) {
